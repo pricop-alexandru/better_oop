@@ -1,7 +1,7 @@
 #include "interface.h"
 
 Interface::Interface(sf::RenderWindow& mainWindow) : window(mainWindow) {
-
+    var=0;
 }
 void Interface::read() { std::cin>>var;}
 void Interface::write() const {std::cout<<var;}
