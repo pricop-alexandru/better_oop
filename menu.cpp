@@ -1,6 +1,7 @@
 #include "menu.h"
 #include <stdexcept>
 Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
+    var=0;
     if (!backgroundTexture.loadFromFile("C:\\Users\\locol\\CLionProjects\\better_oop\\Resources\\projectimage.jpg")) {
         throw std::runtime_error("Failed to load background image");
     }
