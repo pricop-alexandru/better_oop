@@ -1,60 +1,33 @@
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include <chrono>
-#include <thread>
 
-#ifdef __linux__
-#include <X11/Xlib.h>
-#endif
-
-class SomeClass {
-public:
-    explicit SomeClass(int) {}
-};
-
-SomeClass *getC() {
-    return new SomeClass{2};
-}
-
+#include "interface.h"
+#include "menu.h"
 int main() {
-    #ifdef __linux__
-    XInitThreads();
-    #endif
+    sf::RenderWindow mainWindow(sf::VideoMode(1920, 1080), "Tetris Game");
 
-    SomeClass *c = getC();
-    std::cout << c << "\n";
-    delete c;
+    Menu gameMenu(mainWindow); // Initialize the menu with the main window
 
-    sf::RenderWindow window;
-    // NOTE: sync with env variable APP_WINDOW from .github/workflows/cmake.yml:30
-    window.create(sf::VideoMode({800, 700}), "My Window", sf::Style::Default);
-    window.setVerticalSyncEnabled(true);
-    //window.setFramerateLimit(60);
-
-    while(window.isOpen()) {
-        sf::Event e;
-        while(window.pollEvent(e)) {
-            switch(e.type) {
-            case sf::Event::Closed:
-                window.close();
-                break;
-            case sf::Event::Resized:
-                std::cout << "New width: " << window.getSize().x << '\n'
-                          << "New height: " << window.getSize().y << '\n';
-                break;
-            case sf::Event::KeyPressed:
-                std::cout << "Received key " << (e.key.code == sf::Keyboard::X ? "X" : "(other)") << "\n";
-                break;
-            default:
-                break;
+    while (mainWindow.isOpen()) {
+        sf::Event event;
+        while (mainWindow.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                mainWindow.close();
+            else if (event.type == sf::Event::MouseButtonReleased) {
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    if (gameMenu.playButtonClicked()) {
+                        // Transition to game interface
+                        gameMenu.close(); // Close the menu
+                        Interface gameInterface(mainWindow); // Start the game interface
+                        gameInterface.run(); // Start running the game
+                    }
+                }
+                // Handle other button clicks in menu if needed
             }
         }
-        using namespace std::chrono_literals;
-        std::this_thread::sleep_for(300ms);
 
-        window.clear();
-        window.display();
+        mainWindow.clear();
+        gameMenu.run(); // Draw the menu elements
+        mainWindow.display();
     }
 
     return 0;
