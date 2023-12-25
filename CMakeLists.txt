@@ -112,9 +112,10 @@ add_executable(${PROJECT_NAME} main.cpp
         game.h
         interface.h
         interface.cpp
-        interface.cpp
         menu.h
-        menu.cpp)
+        menu.cpp
+        content.h
+        content.cpp)
 
 ###############################################################################
 

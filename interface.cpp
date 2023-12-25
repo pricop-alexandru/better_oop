@@ -1,10 +1,12 @@
 #include "interface.h"
 
-Interface::Interface(sf::RenderWindow& mainWindow) : window(mainWindow) {
+Interface::Interface(sf::RenderWindow& mainWindow) : window(mainWindow), playField(mainWindow) {
     var=0;
 }
 void Interface::read() { std::cin>>var;}
+
 void Interface::write() const {std::cout<<var;}
+
 void Interface::run() {
     while (window.isOpen()) {
         sf::Event event{};
@@ -15,7 +17,7 @@ void Interface::run() {
 
         window.clear(sf::Color::Black); // Clear the window with a black color
 
-        // Draw your game elements here
+        playField.drawBorder();
 
         window.display(); // Display what was drawn
     }

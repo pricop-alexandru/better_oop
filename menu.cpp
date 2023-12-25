@@ -10,8 +10,9 @@ Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     if (!font.loadFromFile("C:\\Users\\locol\\CLionProjects\\better_oop\\Resources\\Debrosee-ALPnL.ttf")){
         throw std::runtime_error("Failed to load font");
     }
+
     titleText.setFont(font);
-    titleText.setString("Tetris");
+    titleText.setString("Setris");
     titleText.setCharacterSize(250);
     titleText.setFillColor(sf::Color::White);
     titleText.setStyle(sf::Text::Bold);
@@ -25,18 +26,22 @@ Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     playButton.setOutlineColor(sf::Color::Black);
     playButton.setOutlineThickness(2.0f);
     //play button^
+
     leaderboardButton.setSize(sf::Vector2f(600.0f, buttonHeight));
     leaderboardButton.setPosition((window.getSize().x - 600.0f) / 2.0f,(window.getSize().y + buttonHeight + verticalGap ) / 2.0f);
     leaderboardButton.setOutlineColor(sf::Color::Black);
     leaderboardButton.setOutlineThickness(2.0f);
     //leaderboard button^
+
     playText.setString("Play");
     playText.setFont(font);
     playText.setCharacterSize(50);
     playText.setFillColor(sf::Color::Black);
+
     float playTextWidth = playText.getLocalBounds().width;
     playText.setOrigin(playTextWidth / 2.0f, 0);
     playText.setPosition(window.getSize().x / 2.0f, 510.0f);
+
     leaderboardText.setString("Leaderboard");
     leaderboardText.setFont(font);
     leaderboardText.setCharacterSize(50);
@@ -76,8 +81,6 @@ bool Menu::playButtonClicked() {
     return playButton.getGlobalBounds().contains(mousePositionF);
 }
 void Menu::close() {
-    // Close the menu if needed
-    // ...
 }
 void Menu::read() {std::cin>>var;}
 void Menu::write() const {std::cout<<var;}

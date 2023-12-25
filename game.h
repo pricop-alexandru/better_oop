@@ -3,6 +3,7 @@
 #include<fstream>
 class Game {
 public:
+    virtual ~Game() {};
     virtual void run() = 0;
     virtual void read() = 0;
     virtual void write() const = 0;
