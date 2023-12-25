@@ -3,7 +3,7 @@
 
 class PlayField {
 public:
-    PlayField(sf::RenderWindow& window);
+    explicit PlayField(sf::RenderWindow& window);
     void drawBorder();
 
 private:
