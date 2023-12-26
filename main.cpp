@@ -1,6 +1,6 @@
 #include <chrono>
 
-#include "interface.h"
+#include "game.h"
 #include "menu.h"
 int main() {
     sf::RenderWindow mainWindow(sf::VideoMode(1920, 1080), "Tetris Game");
@@ -17,7 +17,7 @@ int main() {
                     if (gameMenu.playButtonClicked()) {
                         // Transition to game interface
                         gameMenu.close(); // Close the menu
-                        Interface gameInterface(mainWindow); // Start the game interface
+                        Game gameInterface(mainWindow); // Start the game interface
                         gameInterface.run(); // Start running the game
                     }
                 }

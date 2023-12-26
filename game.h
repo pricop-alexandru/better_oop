@@ -1,12 +1,17 @@
 #pragma once
-#include<iostream>
-#include<fstream>
-class Game {
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include "interface.h"
+#include "content.h"
+
+class Game : public Interface {
+private:
+    sf::RenderWindow& window;
+    PlayField playField;
+    int var;
 public:
-    virtual void run() = 0;
-    virtual void read() = 0;
-    virtual void write() const = 0;
-    virtual ~Game() {};
-    friend std::istream& operator>>(std::istream& in, Game& obj){ obj.read(); return in;}
-    friend std::ostream& operator<<(std::ostream& out, const Game& obj){ obj.write(); return out;}
+    explicit Game(sf::RenderWindow& mainWindow);
+    void run() override;
+    void read() override;
+    void write() const override;
 };

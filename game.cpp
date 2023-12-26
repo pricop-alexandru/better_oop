@@ -1,13 +1,13 @@
-#include "interface.h"
+#include "game.h"
 
-Interface::Interface(sf::RenderWindow& mainWindow) : window(mainWindow), playField(mainWindow) {
+Game::Game(sf::RenderWindow& mainWindow) : window(mainWindow), playField(mainWindow) {
     var=0;
 }
-void Interface::read() { std::cin>>var;}
+void Game::read() { std::cin>>var;}
 
-void Interface::write() const {std::cout<<var;}
+void Game::write() const {std::cout<<var;}
 
-void Interface::run() {
+void Game::run() {
     while (window.isOpen()) {
         sf::Event event{};
         while (window.pollEvent(event)) {

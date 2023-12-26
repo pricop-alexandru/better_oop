@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "game.h"
+#include "interface.h"
 
-class Menu : public Game {
+class Menu : public Interface {
 private:
     sf::RenderWindow& window;
     sf::Texture backgroundTexture;
