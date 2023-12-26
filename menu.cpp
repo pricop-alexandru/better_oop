@@ -2,12 +2,12 @@
 #include <stdexcept>
 Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     var=0;
-    if (!backgroundTexture.loadFromFile("C:\\Users\\locol\\CLionProjects\\better_oop\\Resources\\projectimage.jpg")) {
+    if (!backgroundTexture.loadFromFile("Resources/projectimage.jpg")) {
         throw std::runtime_error("Failed to load background image");
     }
     backgroundSprite.setTexture(backgroundTexture);
     //background^
-    if (!font.loadFromFile("C:\\Users\\locol\\CLionProjects\\better_oop\\Resources\\Debrosee-ALPnL.ttf")){
+    if (!font.loadFromFile("Resources/Debrosee-ALPnL.ttf")){
         throw std::runtime_error("Failed to load font");
     }
 
