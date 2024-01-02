@@ -63,14 +63,14 @@ void Menu::run(){
         playButton.setFillColor(sf::Color(150, 80, 200));
     }
     window.draw(playButton);
-
+    //^^arata putin mai luminos cand pun mouse-ul pe el
     if (leaderboardButton.getGlobalBounds().contains(mousePositionF)) {
         leaderboardButton.setFillColor(sf::Color(150, 130, 200));
     } else {
         leaderboardButton.setFillColor(sf::Color(150, 80, 200));
     }
     window.draw(leaderboardButton);
-
+    //^^la fel la ambele
     window.draw(playText);
     window.draw(leaderboardText);
 
