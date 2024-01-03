@@ -221,3 +221,18 @@ void PlayField::clearLines() {
         std::cout<<clearedLines<<std::endl; //asta ca debugging ca merge momentan
     }
 }
+std::ostream& operator<<(std::ostream& os, const PlayField& playField) {
+    for (int y = 0; y < PlayField::gridRows; ++y) {
+        for (int x = 0; x < PlayField::gridCols; ++x) {
+            os << playField.grid[y][x] << " ";
+        }
+        os << std::endl;
+    }
+    return os;
+}
+PlayField& PlayField::operator=(const PlayField& other) {
+    if (this != &other) {
+        this->grid = other.grid;
+    }
+    return *this;
+}

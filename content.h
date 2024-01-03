@@ -4,8 +4,11 @@
 #include <random>
 #include <iostream>
 class PlayField {
+    friend std::ostream& operator<<(std::ostream& os, const PlayField& playField);
 public:
     explicit PlayField(sf::RenderWindow& window);
+    ~PlayField(){ std::cout<<"Operation complete."<<std::endl; }
+    PlayField& operator=(const PlayField& other);
     void drawBorder();
     void draw();
     void move_down(bool& hasMoved);
