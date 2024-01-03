@@ -100,27 +100,27 @@ void PlayField::spawnOShape(int color) {
     }
 }
 void PlayField::spawnTShape(int color) {
-    int startY = 5; // sus
+    int startY = 0; // sus
     int startX = gridCols / 2 - 5; // centrat
     for (int x = startX; x < startX + 15; ++x) {
-        for (int y = startY; y < startY + 5; ++y) {
+        for (int y = startY + 5; y < startY + 10; ++y) {
             grid[y][x] = color;
         }
-        for (int y = startY-5; y < startY ; ++y) {
+        for (int y = startY; y < startY + 5 ; ++y) {
             if(x >= startX + 5 && x < startX + 10)
                 grid[y][x] = color;
         }
     }
 }
 void PlayField::spawnLShape(int color) {
-    int startY = 5; // sus
+    int startY = 0; // sus
     int startX = gridCols / 2 - 5; // centrat
     for (int x = startX; x < startX + 15; ++x) {
-        for (int y = startY; y < startY + 5; ++y) {
+        for (int y = startY + 5; y < startY + 10; ++y) {
             grid[y][x] = color;
         }
-        for (int y = startY-5; y < startY ; ++y) {
-            if(x >= startX + 10 && x < startX + 15)
+        for (int y = startY; y < startY + 5 ; ++y) {
+            if(x >= startX + 10)
                 grid[y][x] = color;
         }
     }
