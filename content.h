@@ -3,12 +3,15 @@
 #include <SFML/Graphics.hpp>
 #include <random>
 #include <iostream>
+#include <functional>
 class PlayField {
     friend std::ostream& operator<<(std::ostream& os, const PlayField& playField);
 public:
     explicit PlayField(sf::RenderWindow& window);
     ~PlayField(){ std::cout<<"Operation complete."<<std::endl; }
     PlayField& operator=(const PlayField& other);
+    typedef void (PlayField::*ShapeFunction)(int);
+    std::vector<ShapeFunction> shapeFunctions;
     void drawBorder();
     void draw();
     void move_down(bool& hasMoved);
@@ -19,6 +22,7 @@ public:
     void move_right();
     void markLines();
     void clearLines();
+    void restartGame();
     int getClearedLines() const { return clearedLines; } //il voi folosi la printat leaderboard (poate pot folosi acolo smart pointers?)
 private:
     sf::RenderWindow& window;
@@ -27,6 +31,9 @@ private:
     int getRandomColor();
     int clearedLines;
     void spawnLineShape(int color);
+    void spawnOShape(int color);
+    void spawnLShape(int color);
+    void spawnTShape(int color);
     bool findGroup(int x, int y, int color, std::vector<std::vector<bool>>& visited, std::vector<std::pair<int, int>>& group, bool& edgeLeft, bool& edgeRight);
     static const int gridRows = 100;
     static const int gridCols = 50;

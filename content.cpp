@@ -10,6 +10,7 @@ PlayField::PlayField(sf::RenderWindow& win) : window(win), clearedLines(0) {
     border.setOutlineThickness(borderThickness);
     border.setOutlineColor(sf::Color::White);
     grid.resize(gridRows, std::vector<int>(gridCols, 0));
+    shapeFunctions = {&PlayField::spawnLineShape, &PlayField::spawnOShape, &PlayField::spawnLShape, &PlayField::spawnTShape};
 }
 void PlayField::drawBorder() {
     window.draw(border);
@@ -24,8 +25,6 @@ void PlayField::draw() {
 void PlayField::drawCell(int x, int y, int cellValue) {
     sf::RectangleShape cell(sf::Vector2f(cellSize, cellSize));
     cell.setPosition(710 + x * cellSize, 40 + y * cellSize);
-
-    // Set cell color based on its value
     switch(cellValue) {
         case -1: cell.setFillColor(sf::Color::Cyan); break;
         case 1: cell.setFillColor(sf::Color::Red); break;
@@ -75,16 +74,54 @@ int PlayField::getRandomColor() {
 
 void PlayField::spawnRandomPiece() {
     int color = getRandomColor();
-    // We spawn the line for now :)
-    spawnLineShape(color);
+        // randomizam una din functii:)
+        std::srand(static_cast<unsigned int>(std::time(nullptr)));  // Seed pt generare
+        int randomIndex = std::rand() % shapeFunctions.size();
+        // apelam functia random
+        ShapeFunction selectedFunction = shapeFunctions[randomIndex];
+        (this->*selectedFunction)(color);
 }
 void PlayField::spawnLineShape(int color) {
-    // o sa fie transformat mai incolo in randomizer de forme
     int startY = 0; // sus
     int startX = gridCols / 2 - 10; // centrat
     for (int x = startX; x < startX + 20; ++x) {
         for (int y = startY; y < startY + 5; ++y) {
             grid[y][x] = color;
+        }
+    }
+}
+void PlayField::spawnOShape(int color) {
+    int startY = 0; // sus
+    int startX = gridCols / 2 - 5; // centrat
+    for (int x = startX; x < startX + 10; ++x) {
+        for (int y = startY; y < startY + 10; ++y) {
+            grid[y][x] = color;
+        }
+    }
+}
+void PlayField::spawnTShape(int color) {
+    int startY = 5; // sus
+    int startX = gridCols / 2 - 5; // centrat
+    for (int x = startX; x < startX + 15; ++x) {
+        for (int y = startY; y < startY + 5; ++y) {
+            grid[y][x] = color;
+        }
+        for (int y = startY-5; y < startY ; ++y) {
+            if(x >= startX + 5 && x < startX + 10)
+                grid[y][x] = color;
+        }
+    }
+}
+void PlayField::spawnLShape(int color) {
+    int startY = 5; // sus
+    int startX = gridCols / 2 - 5; // centrat
+    for (int x = startX; x < startX + 15; ++x) {
+        for (int y = startY; y < startY + 5; ++y) {
+            grid[y][x] = color;
+        }
+        for (int y = startY-5; y < startY ; ++y) {
+            if(x >= startX + 10 && x < startX + 15)
+                grid[y][x] = color;
         }
     }
 }
@@ -236,4 +273,12 @@ PlayField& PlayField::operator=(const PlayField& other) {
         this->clearedLines = other.clearedLines;
     }
     return *this;
+}
+void PlayField::restartGame() {
+    for (int y = 0; y < gridRows; ++y) {
+        for (int x = 0; x < gridCols; ++x) {
+            grid[y][x] = 0;
+        }
+    }
+    clearedLines = 0;
 }

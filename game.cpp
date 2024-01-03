@@ -18,6 +18,8 @@ void Game::run() {
                     playField.move_left();
                 if (event.key.code == sf::Keyboard::D)
                     playField.move_right();
+                if (event.key.code == sf::Keyboard::R)
+                    playField.restartGame();
             }
         }
 
