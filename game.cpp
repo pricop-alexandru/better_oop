@@ -8,7 +8,6 @@ void Game::read() { std::cin>>var;}
 void Game::write() const {std::cout<<var;}
 
 void Game::run() {
-    sf::Time delayTime = sf::milliseconds(150);
     while (window.isOpen()) {
         sf::Event event{};
         while (window.pollEvent(event)) {
@@ -37,7 +36,7 @@ void Game::run() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             sf::sleep(sf::milliseconds(25)); // mai rapid putin
         } else {
-            sf::sleep(delayTime); // Viteza normala (inca consistent din cate observ in operatii simplute, daca era mai complex aveam nevoie de std::Clock
+            sf::sleep(sf::milliseconds(150)); // Viteza normala (inca consistent din cate observ in operatii simplute, daca era mai complex aveam nevoie de std::Clock
         }
     }
 }

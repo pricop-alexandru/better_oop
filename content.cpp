@@ -69,7 +69,7 @@ void PlayField::move_down(bool& hasMoved) {
 }
 int PlayField::getRandomColor() {
     static std::uniform_int_distribution<int> colorDist(4, 6); // e manevra ca 4 5 si 6 sunt 1 2 si 3, dar se misca, ajuta cand vrem sa controlam piesa din aer
-    static std::mt19937 rng(std::random_device{}()); //
+    static std::mt19937 rng(std::random_device{}()); // nush ce face codul de la std ...
     return colorDist(rng);
 }
 
