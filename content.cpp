@@ -233,6 +233,7 @@ std::ostream& operator<<(std::ostream& os, const PlayField& playField) {
 PlayField& PlayField::operator=(const PlayField& other) {
     if (this != &other) {
         this->grid = other.grid;
+        this->clearedLines = other.clearedLines;
     }
     return *this;
 }
