@@ -1,5 +1,5 @@
 #include "content.h"
-PlayField::PlayField(sf::RenderWindow& win) : window(win), clearedLines(0), gameOver(false) {
+PlayField::PlayField(sf::RenderWindow& win) : window(win), clearedLines(0), gameOver(false) { //avem si un subtil stadiu al jocului
     // cu 10 arata cel mai uman
     float borderThickness = 10.0f;
     float borderWidth = 500.0f + borderThickness/2;

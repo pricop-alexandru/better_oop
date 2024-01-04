@@ -14,7 +14,7 @@ private:
     sf::Text clearedLinesText;
 public:
     bool isGameOver() {
-        return playField.isGameOver();
+        return playField.isGameOver(); //il folosim pt pointers
     }
     explicit Game(sf::RenderWindow& mainWindow);
     void run() override;

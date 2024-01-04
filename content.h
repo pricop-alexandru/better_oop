@@ -24,7 +24,7 @@ public:
     void clearLines();
     void restartGame();
     bool isGameOver() { return gameOver; }
-    int getClearedLines() const { return clearedLines; } //il voi folosi la printat leaderboard
+    int getClearedLines() const { return clearedLines; } // asta ca sa pastrez variabilele private
     void drawText();
 private:
     sf::RenderWindow& window;

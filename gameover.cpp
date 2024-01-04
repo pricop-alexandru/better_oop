@@ -24,17 +24,17 @@ void GameOver::run() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             } else if (event.type == sf::Event::TextEntered) {
-                if (event.text.unicode == '\b' && !playerName.empty()) {  // Handle backspace
+                if (event.text.unicode == '\b' && !playerName.empty()) {  // sa se stearga din playername in timp real
                     playerName.pop_back();
-                } else if (event.text.unicode < 128) {  // Handle regular character input
+                } else if (event.text.unicode < 128) {  // sa adaugam orice caracter (nu punctuatii)
                     playerName += static_cast<char>(event.text.unicode);
                 }
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
-                break;
+                break; //se inchide la enter (WIP butonul de leaderboard)
         }
 
-        nameText.setString(playerName);
+        nameText.setString(playerName); //dupa toate operatiile, le afiseaza
 
         window.clear();
         window.draw(prompt);

@@ -9,7 +9,7 @@ void startGame(sf::RenderWindow& window) {
         currentState->run();
 
         Game* gamePtr = dynamic_cast<Game*>(currentState.get());
-        if (gamePtr && gamePtr->isGameOver()) {
+        if (gamePtr && gamePtr->isGameOver()) { //asta ca sa nu fie nullpointer chiar daca zice tidy ca e mereu true
             currentState = std::make_unique<GameOver>(window);
             currentState->run();
             break;

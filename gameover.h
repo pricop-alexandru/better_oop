@@ -29,7 +29,7 @@ public:
     void run() override;
     void read() override;
     void write() const override;
-    Player player;
+    Player player; //gata si ultima compunere
 private:
     int var;
     sf::RenderWindow& window;

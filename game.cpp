@@ -3,7 +3,7 @@
 Game::Game(sf::RenderWindow& mainWindow) : window(mainWindow), playField(mainWindow) {
     var=0;
     if (!font.loadFromFile("Resources/Doctor Glitch.otf")){
-        throw std::runtime_error("Failed to load font");
+        throw std::runtime_error("Failed to load font"); //tot nu avem ierarhie
     }
     clearedLinesText.setFont(font);
     clearedLinesText.setCharacterSize(30); // Choose an appropriate size
