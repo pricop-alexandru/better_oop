@@ -30,7 +30,6 @@ void Game::run() {
                     playField.restartGame();
             }
         }
-
         window.clear(sf::Color::Black);
         playField.drawBorder();
         playField.drawText();
@@ -50,5 +49,7 @@ void Game::run() {
         } else {
             sf::sleep(sf::milliseconds(150)); // Viteza normala (inca consistent din cate observ in operatii simplute, daca era mai complex aveam nevoie de std::Clock
         }
+        if (event.key.code == sf::Keyboard::Escape)
+            break;
     }
 }

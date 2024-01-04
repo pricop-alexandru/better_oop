@@ -16,7 +16,7 @@ Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     titleText.setCharacterSize(250);
     titleText.setFillColor(sf::Color::White);
     titleText.setStyle(sf::Text::Bold);
-    titleText.setPosition(500, 150);
+    titleText.setPosition(490, 150);
     //font^
     float buttonWidth = 700.0f;
     float buttonHeight = 50.0f;

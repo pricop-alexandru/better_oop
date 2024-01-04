@@ -45,6 +45,7 @@ private:
     int clearedLines;
     bool gameOver;
     sf::Text commandText;
+    sf::Text restartText;
     sf::Text exitText;
     sf::Font font;
     void spawnLineShape(int color);

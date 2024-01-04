@@ -20,15 +20,22 @@ PlayField::PlayField(sf::RenderWindow& win) : window(win), clearedLines(0), game
     commandText.setFillColor(sf::Color::White);
     commandText.setStyle(sf::Text::Regular);
     commandText.setPosition(50, 50);
+    restartText.setFont(font);
+    restartText.setString("Press R to restart the game");
+    restartText.setCharacterSize(30);
+    restartText.setFillColor(sf::Color::White);
+    restartText.setStyle(sf::Text::Regular);
+    restartText.setPosition(50, 90);
     exitText.setFont(font);
-    exitText.setString("Press R to restart");
+    exitText.setString("Press Esc to return to menu");
     exitText.setCharacterSize(30);
     exitText.setFillColor(sf::Color::White);
     exitText.setStyle(sf::Text::Regular);
-    exitText.setPosition(50, 90);
+    exitText.setPosition(50, 130);
 }
 void PlayField::drawText() {
     window.draw(commandText);
+    window.draw(restartText);
     window.draw(exitText);
 }
 void PlayField::drawBorder() {
