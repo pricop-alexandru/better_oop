@@ -15,8 +15,9 @@ Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     titleText.setString("Setris");
     titleText.setCharacterSize(250);
     titleText.setFillColor(sf::Color::White);
-    titleText.setStyle(sf::Text::Bold);
-    titleText.setPosition(490, 150);
+    float titleTextWidth = titleText.getLocalBounds().width;
+    titleText.setOrigin(titleTextWidth / 2.0f, 0);
+    titleText.setPosition(window.getSize().x / 2.0f, 200.0f);
     //font^
     float buttonWidth = 700.0f;
     float buttonHeight = 50.0f;
