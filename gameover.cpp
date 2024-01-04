@@ -4,6 +4,7 @@ GameOver::GameOver(sf::RenderWindow& mainWindow): window(mainWindow) {
     if (!font.loadFromFile("Resources/Doctor Glitch.otf")){
         throw std::runtime_error("Failed to load font");
     }
+    var=0;
 }
 
 void GameOver::run() {
