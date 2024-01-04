@@ -1,5 +1,5 @@
 #include <chrono>
-#include <memory>
+#include <memory> //asa am reparat 6 erori de asan check si wondows gnu, luati aminte copii
 #include "gameover.h"
 #include "game.h"
 #include "menu.h"
