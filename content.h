@@ -10,6 +10,17 @@ public:
     explicit PlayField(sf::RenderWindow& window);
     ~PlayField(){ std::cout<<"Operation complete."<<std::endl; }
     PlayField& operator=(const PlayField& other);
+
+    PlayField(const PlayField& other)
+            : window(other.window), //internetul a decretat ca windowul defapt nu se schimba, il imparte pe acelasi
+              border(other.border),
+              grid(other.grid),
+              clearedLines(other.clearedLines),
+              gameOver(other.gameOver),
+              commandText(other.commandText),
+              exitText(other.exitText),
+              font(other.font){}
+
     typedef void (PlayField::*ShapeFunction)(int);
     std::vector<ShapeFunction> shapeFunctions;
     void drawBorder();

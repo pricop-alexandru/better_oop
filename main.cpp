@@ -15,11 +15,11 @@ void startGame(sf::RenderWindow& window) {
             currentState->run();
             break;
         }
+        break;
     }
 }
 int main() {
     sf::RenderWindow mainWindow(sf::VideoMode(1920, 1080), "Setris Game");
-
     Menu gameMenu(mainWindow); // pornim meniul
 
     while (mainWindow.isOpen()) {
@@ -30,7 +30,6 @@ int main() {
             else if (event.type == sf::Event::MouseButtonReleased) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     if (gameMenu.playButtonClicked()) {
-                        // Trecem la joc
                         gameMenu.close(); // inchidem meniul
                         startGame(mainWindow); //deschidem functia cu care avem si jocul si pierderea jocului (desi e cam greu sa pierzi momentan (mai putin daca modific sa mai pun o culoare)
                     }

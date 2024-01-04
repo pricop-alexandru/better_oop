@@ -31,8 +31,9 @@ void GameOver::run() {
                     playerName += static_cast<char>(event.text.unicode);
                 }
             }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter)
-                break; //se inchide la enter (WIP butonul de leaderboard)
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+                break;
+            }
         }
 
         nameText.setString(playerName); //dupa toate operatiile, le afiseaza
@@ -41,6 +42,10 @@ void GameOver::run() {
         window.draw(prompt);
         window.draw(nameText);
         window.display();
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+            std::cout << "Exiting GameOver screen" << std::endl; //aparent cu el doar in poll event iese din loopul de events, pe scurt ecranul ramane doar devine unresponsive
+            break; // prin urmare am avut nevoie de doua eventuri de enter
+        }
     }
 
     player.setName(playerName);
