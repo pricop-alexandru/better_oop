@@ -23,7 +23,7 @@ public:
     void markLines();
     void clearLines();
     void restartGame();
-    bool isGameOver() const { return gameOver; }
+    bool isGameOver() { return gameOver; }
     int getClearedLines() const { return clearedLines; } //il voi folosi la printat leaderboard
     void drawText();
 private:

@@ -13,6 +13,9 @@ private:
     sf::Font font;
     sf::Text clearedLinesText;
 public:
+    bool isGameOver() {
+        return playField.isGameOver();
+    }
     explicit Game(sf::RenderWindow& mainWindow);
     void run() override;
     void read() override;

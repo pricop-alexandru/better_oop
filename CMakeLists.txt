@@ -115,7 +115,11 @@ add_executable(${PROJECT_NAME} main.cpp
         menu.h
         menu.cpp
         content.h
-        content.cpp)
+        content.cpp
+        gameover.cpp
+        gameover.cpp
+        gameover.h
+)
 
 ###############################################################################
 
