@@ -9,7 +9,9 @@ class Game : public Interface {
 private:
     sf::RenderWindow& window;
     PlayField playField;
-    int var; //singurul scop al acestuia e sa nu lase constructorul gol :(
+    int var;
+    sf::Font font;
+    sf::Text clearedLinesText;
 public:
     explicit Game(sf::RenderWindow& mainWindow);
     void run() override;

@@ -7,7 +7,7 @@ Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     }
     backgroundSprite.setTexture(backgroundTexture);
     //background^
-    if (!font.loadFromFile("Resources/Debrosee-ALPnL.ttf")){
+    if (!font.loadFromFile("Resources/Doctor Glitch.otf")){
         throw std::runtime_error("Failed to load font");
     }
 
@@ -16,19 +16,19 @@ Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     titleText.setCharacterSize(250);
     titleText.setFillColor(sf::Color::White);
     titleText.setStyle(sf::Text::Bold);
-    titleText.setPosition(600, 150);
+    titleText.setPosition(500, 150);
     //font^
     float buttonWidth = 700.0f;
     float buttonHeight = 50.0f;
     float verticalGap = 100.0f;
     playButton.setSize(sf::Vector2f(buttonWidth, buttonHeight));
-    playButton.setPosition((window.getSize().x - buttonWidth) / 2.0f, (window.getSize().y - buttonHeight) / 2.0f);
+    playButton.setPosition((window.getSize().x - buttonWidth) / 2.0f, (window.getSize().y - buttonHeight) / 2.0f + 2.5f);
     playButton.setOutlineColor(sf::Color::Black);
     playButton.setOutlineThickness(2.0f);
     //play button^
 
     leaderboardButton.setSize(sf::Vector2f(600.0f, buttonHeight));
-    leaderboardButton.setPosition((window.getSize().x - 600.0f) / 2.0f,(window.getSize().y + buttonHeight + verticalGap ) / 2.0f);
+    leaderboardButton.setPosition((window.getSize().x - 600.0f) / 2.0f,(window.getSize().y + buttonHeight + verticalGap ) / 2.0f + 2.5f);
     leaderboardButton.setOutlineColor(sf::Color::Black);
     leaderboardButton.setOutlineThickness(2.0f);
     //leaderboard button^

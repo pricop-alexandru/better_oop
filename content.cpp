@@ -1,5 +1,5 @@
 #include "content.h"
-PlayField::PlayField(sf::RenderWindow& win) : window(win), clearedLines(0) {
+PlayField::PlayField(sf::RenderWindow& win) : window(win), clearedLines(0), gameOver(false) {
     // cu 10 arata cel mai uman
     float borderThickness = 10.0f;
     float borderWidth = 500.0f + borderThickness/2;
@@ -11,6 +11,25 @@ PlayField::PlayField(sf::RenderWindow& win) : window(win), clearedLines(0) {
     border.setOutlineColor(sf::Color::White);
     grid.resize(gridRows, std::vector<int>(gridCols, 0));
     shapeFunctions = {&PlayField::spawnLineShape, &PlayField::spawnOShape, &PlayField::spawnLShape, &PlayField::spawnTShape};
+    if (!font.loadFromFile("Resources/Doctor Glitch.otf")){
+        throw std::runtime_error("Failed to load font");
+    }
+    commandText.setFont(font);
+    commandText.setString("Press A or D to move the pieces");
+    commandText.setCharacterSize(30);
+    commandText.setFillColor(sf::Color::White);
+    commandText.setStyle(sf::Text::Regular);
+    commandText.setPosition(50, 50);
+    exitText.setFont(font);
+    exitText.setString("Press R to restart");
+    exitText.setCharacterSize(30);
+    exitText.setFillColor(sf::Color::White);
+    exitText.setStyle(sf::Text::Regular);
+    exitText.setPosition(50, 90);
+}
+void PlayField::drawText() {
+    window.draw(commandText);
+    window.draw(exitText);
 }
 void PlayField::drawBorder() {
     window.draw(border);
@@ -68,8 +87,8 @@ void PlayField::move_down(bool& hasMoved) {
 }
 int PlayField::getRandomColor() {
     static std::uniform_int_distribution<int> colorDist(4, 6); // e manevra ca 4 5 si 6 sunt 1 2 si 3, dar se misca, ajuta cand vrem sa controlam piesa din aer
-    static std::mt19937 rng(std::random_device{}()); // nush ce face codul de la std ...
-    return colorDist(rng);
+    static std::mt19937 rng(std::random_device{}()); // nush ce face codul de la std, sau de ce este un numar asa specific
+    return colorDist(rng); // dar asta stiu ca reordoneaza lista generata de numere si o ia pe prima
 }
 
 void PlayField::spawnRandomPiece() {
@@ -86,6 +105,10 @@ void PlayField::spawnLineShape(int color) {
     int startX = gridCols / 2 - 10; // centrat
     for (int x = startX; x < startX + 20; ++x) {
         for (int y = startY; y < startY + 5; ++y) {
+            if(grid[y][x]!=0){
+                gameOver=true;
+                return;
+            }
             grid[y][x] = color;
         }
     }
@@ -95,6 +118,10 @@ void PlayField::spawnOShape(int color) {
     int startX = gridCols / 2 - 5; // centrat
     for (int x = startX; x < startX + 10; ++x) {
         for (int y = startY; y < startY + 10; ++y) {
+            if(grid[y][x]!=0){
+                gameOver=true;
+                return;
+            }
             grid[y][x] = color;
         }
     }
@@ -104,6 +131,10 @@ void PlayField::spawnTShape(int color) {
     int startX = gridCols / 2 - 5; // centrat
     for (int x = startX; x < startX + 15; ++x) {
         for (int y = startY + 5; y < startY + 10; ++y) {
+            if(grid[y][x]!=0){
+                gameOver=true;
+                return;
+            }
             grid[y][x] = color;
         }
         for (int y = startY; y < startY + 5 ; ++y) {
@@ -117,6 +148,10 @@ void PlayField::spawnLShape(int color) {
     int startX = gridCols / 2 - 5; // centrat
     for (int x = startX; x < startX + 15; ++x) {
         for (int y = startY + 5; y < startY + 10; ++y) {
+            if(grid[y][x]!=0){
+                gameOver=true;
+                return;
+            }
             grid[y][x] = color;
         }
         for (int y = startY; y < startY + 5 ; ++y) {
@@ -157,12 +192,14 @@ void PlayField::checkAndResolveCollisions() {
 void PlayField::move_left() {
     // verificam
     bool canMoveLeft = false;
-    for (int y = 0; y < gridRows; ++y) {
+    for (int y = gridRows -1; y >= 0; --y) {
         for (int x = 1; x < gridCols; ++x) {
             if (grid[y][x] >= 4 && grid[y][x - 1] == 0) {
                 canMoveLeft = true;
                 break; // iesim
             }
+            else if(grid[y][x] >= 4 && grid[y][x - 1] != 0)
+                return;
         }
         if (canMoveLeft) {
             break; // iesim
@@ -183,12 +220,14 @@ void PlayField::move_left() {
 void PlayField::move_right() {
     // verificam
     bool canMoveRight = false;
-    for (int y = 0; y < gridRows; ++y) {
+    for (int y = gridRows - 1; y > 0; --y) {
         for (int x = gridCols - 2; x >= 0; --x) {
             if (grid[y][x] >= 4 && grid[y][x + 1] == 0) {
                 canMoveRight = true;
                 break; // iesim
             }
+            else if(grid[y][x] >= 4 && grid[y][x + 1] != 0)
+                return;
         }
         if (canMoveRight) {
             break; // iesim

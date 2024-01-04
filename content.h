@@ -23,13 +23,19 @@ public:
     void markLines();
     void clearLines();
     void restartGame();
-    int getClearedLines() const { return clearedLines; } //il voi folosi la printat leaderboard (poate pot folosi acolo smart pointers?)
+    bool isGameOver() const { return gameOver; }
+    int getClearedLines() const { return clearedLines; } //il voi folosi la printat leaderboard
+    void drawText();
 private:
     sf::RenderWindow& window;
     sf::RectangleShape border;
     std::vector<std::vector<int>> grid; // 50 pe 100 (din 500 pe 1000 pixeli :( )
     int getRandomColor();
     int clearedLines;
+    bool gameOver;
+    sf::Text commandText;
+    sf::Text exitText;
+    sf::Font font;
     void spawnLineShape(int color);
     void spawnOShape(int color);
     void spawnLShape(int color);
