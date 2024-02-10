@@ -1,5 +1,5 @@
 #include <algorithm>  // For std::swap
-#include "Interface.h"
+#include "interface.h"
 
 class StatePtr {
 public:
