@@ -38,6 +38,10 @@ void GameOver::run() {
 
         nameText.setString(playerName); //dupa toate operatiile, le afiseaza
 
+        // salvam in leaderboard
+        std::ofstream file("leaderboard.txt", std::ios::app);
+        file << playerName << ": " << player.getScore() << std::endl;
+
         window.clear();
         window.draw(prompt);
         window.draw(nameText);
@@ -49,6 +53,9 @@ void GameOver::run() {
     }
 
     player.setName(playerName);
+}
+GameOver* GameOver::clone() const {
+    return new GameOver(*this);
 }
 void GameOver::read() {std::cin>>var;}
 void GameOver::write() const {std::cout<<var;}

@@ -1,14 +1,18 @@
 #include "menu.h"
-#include <stdexcept>
+// #include <stdexcept>
+#include "exceptions.h"
+
 Menu::Menu(sf::RenderWindow& mainWindow) : window(mainWindow) {
     var=0;
     if (!backgroundTexture.loadFromFile("Resources/projectimage.jpg")) {
-        throw std::runtime_error("Failed to load background image");
+        // throw std::runtime_error("Failed to load background image");
+        throw FailedToLoadResourceException("Failed to load background image");
     }
     backgroundSprite.setTexture(backgroundTexture);
     //background^
     if (!font.loadFromFile("Resources/Doctor Glitch.otf")){
-        throw std::runtime_error("Failed to load font");
+        // throw std::runtime_error("Failed to load font");
+        throw FailedToLoadResourceException("Failed to load font");
     }
 
     titleText.setFont(font);
@@ -82,6 +86,9 @@ bool Menu::playButtonClicked() {
     return playButton.getGlobalBounds().contains(mousePositionF);
 }
 void Menu::close() {
+}
+Menu* Menu::clone() const {
+    return new Menu(*this);
 }
 void Menu::read() {std::cin>>var;}
 void Menu::write() const {std::cout<<var;}

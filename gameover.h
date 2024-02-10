@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "interface.h"
+
 class Player {
 private:
     std::string name;
@@ -23,12 +24,14 @@ public:
         return score;
     }
 };
+
 class GameOver : public Interface {
 public:
     explicit GameOver(sf::RenderWindow& mainWindow);
     void run() override;
     void read() override;
     void write() const override;
+    GameOver* clone() const override;
     Player player; //gata si ultima compunere
 private:
     int var;

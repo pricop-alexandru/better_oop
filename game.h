@@ -20,4 +20,7 @@ public:
     void run() override;
     void read() override;
     void write() const override;
+    Game* clone() const override {
+        return new Game(*this);
+    }
 };

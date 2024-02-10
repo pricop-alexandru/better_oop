@@ -22,6 +22,7 @@ public:
     void run() override;
     bool playButtonClicked(); // Example function to check if the "Play" button is clicked
     void close();
+    Menu* clone() const override;
     void read() override;
     void write() const override;
 };
