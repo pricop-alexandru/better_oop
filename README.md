@@ -1,4 +1,4 @@
-# Setris
+# Setris - sand tetris with Object Oriented Programming in C.
 
 ### Tema 0
 
